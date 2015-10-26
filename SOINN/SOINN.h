@@ -15,6 +15,8 @@ namespace NN {
 
 		vector<Node> getLearnedNode();
 
+		void save();
+
 	private:
 		bool is_first_learning;     // 初回の学習かどうか
 		int node_erase_age;         // ノード削除パラメータ

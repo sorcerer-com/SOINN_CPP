@@ -205,6 +205,71 @@ namespace NN {
 		edges = new_edges;
 	}
 
+	bool Graph::save(const string& filePath)
+	{
+#if 0
+		ofstream ofile(filePath, ios_base::app | ios_base::binary);
+		if (!ofile || !ofile.is_open())
+		{
+			ofile.close();
+			return false;
+		}
+
+		// nodes
+		for (const auto& node : this->nodes)
+		{
+			Write(ofile, node.id);
+			Write(ofile, node.position);
+			Write(ofile, node.simular_threshold);
+			Write(ofile, node.win_times);
+		}
+
+		// edges
+		for (const auto& edge : this->edges)
+		{
+			Write(ofile, edge.id);
+			Write(ofile, edge.node_ids.first);
+			Write(ofile, edge.node_ids.second);
+			Write(ofile, edge.age);
+		}
+
+		ofile.close();
+#else
+		ofstream ofile(filePath, ios_base::out);
+		if (!ofile || !ofile.is_open())
+		{
+			ofile.close();
+			return false;
+		}
+
+		// nodes
+		for (const auto& node : this->nodes)
+		{
+			ofile << node.id << " ";
+			ofile << "(";
+			for (const auto& p : node.position)
+				ofile << p << " ";
+			ofile << ")";
+			ofile << node.simular_threshold << " ";
+			ofile << node.win_times << " ";
+			ofile << endl;
+		}
+		ofile << endl;
+
+		// edges
+		for (const auto& edge : this->edges)
+		{
+			ofile << edge.id << " ";
+			ofile << edge.node_ids.first << " ";
+			ofile << edge.node_ids.second << " ";
+			ofile << edge.age << " ";
+			ofile << endl;
+		}
+
+		ofile.close();
+#endif
+	}
+
 	void Graph::sort(int &a, int &b)
 	{
 		// 大小関係をa < bに

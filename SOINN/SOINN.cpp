@@ -89,11 +89,17 @@ namespace NN {
 			}
 		}
 		drawGraph();
+		save();
 	}
 
 	vector<Node> SOINN::getLearnedNode()
 	{
 		return soinn.getAllNodes();
+	}
+
+	void SOINN::save()
+	{
+		this->soinn.save("soinn.dat");
 	}
 
 	void SOINN::initialize()

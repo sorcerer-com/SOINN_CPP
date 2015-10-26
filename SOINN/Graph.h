@@ -48,6 +48,8 @@ namespace NN {
 		void setAllNodes(const vector<Node> &new_nodes);
 		void setAllEdges(const vector<Edge> &new_edges);
 
+		bool save(const string& filePath);
+
 	private:
 		vector<Edge> edges;
 		vector<Node> nodes;
